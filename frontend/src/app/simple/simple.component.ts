@@ -11,19 +11,19 @@ import { FormControl } from '@angular/forms';
 export class SimpleComponent implements OnInit {
   readonly model$ = new BehaviorSubject<SimpleModel | undefined>(undefined);
 
-  nameControl = new FormControl();
+  readonly nameControl = new FormControl();
 
   constructor(protected simpleVM: SimpleViewModel) { }
 
   ngOnInit(): void {
-    this.simpleVM.get().subscribe(m => this.model$.next(m));
+    this.simpleVM.init().subscribe(m => this.model$.next(m));
     this.model$.subscribe(m => {
       this.nameControl.patchValue(m?.name);
     })
   }
 
   postback(): void {
-    this.simpleVM.post({ ... this.model$.value, name: this.nameControl.value } as SimpleModel).subscribe(m => {
+    this.simpleVM.postback({ ... this.model$.value, name: this.nameControl.value } as SimpleModel).subscribe(m => {
       this.model$.next(m);
     });
   }

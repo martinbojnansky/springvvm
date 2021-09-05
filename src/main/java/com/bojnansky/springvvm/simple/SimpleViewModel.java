@@ -2,7 +2,6 @@ package com.bojnansky.springvvm.simple;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,20 +17,20 @@ public class SimpleViewModel implements ViewModel<SimpleModel> {
 	
 	@GetMapping()
 	@ResponseBody
-	public ResponseEntity<SimpleModel> get() {	
+	public ResponseEntity<SimpleModel> init() {	
 		this.model.setName("World");
 		return ResponseEntity.ok().body(this.model);
 	}
 	
 	@PostMapping()
 	@ResponseBody
-	public ResponseEntity<SimpleModel> post(@RequestBody SimpleModel model) throws Exception {	
+	public ResponseEntity<SimpleModel> postback(@RequestBody SimpleModel model) throws Exception {	
 		this.validateModel(model);
 		this.model = model;
 		return ResponseEntity.ok().body(this.model);
 	}
 	
-	public void validateModel(SimpleModel model) throws Exception {
+	private void validateModel(SimpleModel model) throws Exception {
 		if(model.getName().contains("x")) {
 			throw new Exception("Name cannot contain: x");
 		}
