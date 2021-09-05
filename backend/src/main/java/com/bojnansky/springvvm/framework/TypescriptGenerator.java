@@ -35,7 +35,7 @@ public class TypescriptGenerator implements Generator {
 	    for(var i = 0; i < javaPackageNames.size(); i++) {
 	    	String name = javaPackageNames.get(i);
 	    	var javaPackageSet = Collections.singleton("com.bojnansky.springvvm." + name);
-	    	tsGenerator.generate(javaPackageSet, Paths.get("frontend/src/app/" + name + "/api"));
+	    	tsGenerator.generate(javaPackageSet, Paths.get("../frontend/src/app/" + name + "/api"));
 	    }
 
 	}
