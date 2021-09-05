@@ -3,6 +3,7 @@ package com.bojnansky.springvvm.simple;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -22,9 +23,9 @@ public class SimpleViewModel implements ViewModel<SimpleModel> {
 		return ResponseEntity.ok().body(this.model);
 	}
 	
-	@PatchMapping()
+	@PostMapping()
 	@ResponseBody
-	public ResponseEntity<SimpleModel> patch(@RequestBody SimpleModel model) throws Exception {	
+	public ResponseEntity<SimpleModel> post(@RequestBody SimpleModel model) throws Exception {	
 		this.validateModel(model);
 		this.model = model;
 		return ResponseEntity.ok().body(this.model);

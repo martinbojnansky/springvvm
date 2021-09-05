@@ -22,9 +22,8 @@ export class SimpleComponent implements OnInit {
     })
   }
 
-  patch(): void {
-    const newModel = { name: this.nameControl.value } as SimpleModel;
-    this.simpleVM.patch(newModel).subscribe(m => {
+  postback(): void {
+    this.simpleVM.post({ ... this.model$.value, name: this.nameControl.value } as SimpleModel).subscribe(m => {
       this.model$.next(m);
     });
   }
