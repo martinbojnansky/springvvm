@@ -1,0 +1,6 @@
+<ng-container *ngIf="model$ | async as model">
+  <br/>
+  <input type="text" [formControl]="nameControl"/>
+  <button (click)="patch()">Patch</button>
+  <p>{{ model?.greeting }}</p>
+</ng-container>
